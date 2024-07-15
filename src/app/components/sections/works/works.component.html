@@ -1,0 +1,175 @@
+<div class="container">
+  <!-- section title -->
+  <h2 class="section-title wow fadeInUp">Recent works</h2>
+
+  <div class="spacer-60"></div>
+
+  <!-- portfolio filter (desktop) -->
+  <ul class="portfolio-filter list-inline wow fadeInUp">
+    <li class="list-inline-item" [ngClass]="{ current: workFilter === 'all' }" (click)="workFilter = 'all'">Everything</li>
+    <!-- <li class="list-inline-item" [ngClass]="{ current: workFilter === 'creative' }" (click)="workFilter = 'creative'">Creative</li> -->
+    <li class="list-inline-item" [ngClass]="{ current: workFilter === 'art' }" (click)="workFilter = 'art'">Illustrations</li>
+    <li class="list-inline-item" [ngClass]="{ current: workFilter === 'design' }" (click)="workFilter = 'design'">Systems</li>
+    <li class="list-inline-item" [ngClass]="{ current: workFilter === 'branding' }" (click)="workFilter = 'branding'">Machine Learning</li>
+  </ul>
+
+  <!-- portfolio filter (mobile) -->
+  <div class="pf-filter-wrapper">
+    <select class="portfolio-filter-mobile" (change)="onChange($event)">
+      <option value="all">Everything</option>
+      <option value="creative">Creative</option>
+      <option value="art">Art</option>
+      <option value="design">Design</option>
+      <option value="branding">Branding</option>
+    </select>
+  </div>
+
+  <!-- portolio wrapper -->
+  <div class="row portfolio-wrapper">
+    <!-- portfolio item -->
+    <div class="col-md-4 col-sm-6 grid-item art" *ngIf="workFilter === 'all' || workFilter === 'art'">
+      <a href="javascript:" class="work-image" (click)="singleGallery.open(0)">
+        <div class="portfolio-item rounded shadow-dark">
+          <div class="details">
+            <span class="term">Art</span>
+            <h4 class="title">Project Managment Illustration</h4>
+            <span class="more-button"><i class="icon-magnifier-add"></i></span>
+          </div>
+          <div class="thumb">
+            <app-gallery #singleGallery [albums]="singleGallery1"></app-gallery>
+            <div class="mask"></div>
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <!-- portfolio item -->
+    <div
+      class="col-md-4 col-sm-6 grid-item creative design"
+      *ngIf="workFilter === 'all' || workFilter === 'creative' || workFilter === 'design'"
+    >
+      <a href="javascript:" class="work-content" data-toggle="modal" (click)="exampleModalCenter.show()">
+        <div class="portfolio-item rounded shadow-dark">
+          <div class="details">
+            <span class="term">Creative</span>
+            <h4 class="title">USSD and Mobile App Payments Walkthrough Screens</h4>
+            <span class="more-button"><i class="icon-options"></i></span>
+          </div>
+          <div class="thumb">
+            <img src="assets/images/works/2.svg" alt="Portfolio-title" />
+            <div class="mask"></div>
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <app-ui-modal #exampleModalCenter dialogClass="modal-dialog-centered work-modal" [hideHeader]="true" [hideFooter]="true">
+      <div class="app-modal-body">
+        <div id="small-dialog" class="white-popup zoom-anim-dialog mfp-hide">
+          <img src="assets/images/single-work.svg" alt="Title" />
+          <h2>USSD and Mobile App Payments Walkthrough Screens</h2>
+          <p>
+            I developed this app for a fintech company.
+          </p>
+          <p></p>
+          <a href="https://www.figma.com/proto/x5XiaQfmvi1qsm94h04cSK/Zimpost-AgencyOS?node-id=1621-12109&t=Nh0Zl2WkChhgRQW7-0&scaling=scale-down&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=1621%3A12109" class="btn btn-default">View Prototype</a>
+        </div>
+      </div>
+    </app-ui-modal>
+
+    <!-- portfolio item -->
+    <div class="col-md-4 col-sm-6 grid-item branding" *ngIf="workFilter === 'all' || workFilter === 'branding'">
+      <a href="javascript:" class="work-video">
+        <div class="portfolio-item rounded shadow-dark">
+          <div class="details">
+            <span class="term">Branding</span>
+            <h4 class="title">ML Disease Prediction</h4>
+            <span class="more-button"><i class="icon-camrecorder"></i></span>
+          </div>
+          <div class="thumb">
+            <ng-image-slider [images]="videoObject" #nav></ng-image-slider>
+            <div class="mask"></div>
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <!-- portfolio item -->
+    <div class="col-md-4 col-sm-6 grid-item creative" *ngIf="workFilter === 'all' || workFilter === 'creative'">
+      <a href="javascript:" class="work-video" (click)="audioModal.show()">
+        <div class="portfolio-item rounded shadow-dark">
+          <div class="details">
+            <span class="term">Creative</span>
+            <h4 class="title">Onboarding Motivation</h4>
+            <span class="more-button"><i class="icon-music-tone-alt"></i></span>
+          </div>
+          <div class="thumb">
+            <img src="assets/images/works/4.svg" alt="Portfolio-title" />
+            <div class="mask"></div>
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <app-ui-modal #audioModal dialogClass="modal-dialog-centered work-modal audio-modal" [hideHeader]="true" [hideFooter]="true">
+      <div class="app-modal-body">
+        <iframe
+          id="music-on"
+          class="mfp-iframe"
+          frameborder="0"
+          allowfullscreen=""
+          src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/385068290&color=%23ff5500&
+auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&
+show_teaser=true&visual=true"
+        ></iframe>
+      </div>
+    </app-ui-modal>
+
+    <!-- portfolio item -->
+    <!-- <div class="col-md-4 col-sm-6 grid-item art branding" *ngIf="workFilter === 'all' || workFilter === 'art' || workFilter === 'branding'">
+      <a href="javascript:" class="gallery-link" (click)="albumsGallery.open(0)">
+        <div class="portfolio-item rounded shadow-dark">
+          <div class="details">
+            <span class="term">Art, Branding</span>
+            <h4 class="title">iMac Mockup Design</h4>
+            <span class="more-button"><i class="icon-picture"></i></span>
+          </div>
+          <div class="thumb">
+            <app-gallery #albumsGallery [albums]="albums"></app-gallery>
+            <div class="mask"></div>
+          </div>
+        </div>
+      </a>
+    </div> -->
+
+    <!-- portfolio item -->
+    <div
+      class="col-md-4 col-sm-6 grid-item creative design"
+      *ngIf="workFilter === 'all' || workFilter === 'creative' || workFilter === 'design'"
+    >
+      <a href="https://yems.netlify.app/" target="_blank">
+        <div class="portfolio-item rounded shadow-dark">
+          <div class="details">
+            <span class="term">Systems</span>
+            <h4 class="title">Medical Web App</h4>
+            <span class="more-button"><i class="icon-link"></i></span>
+          </div>
+          <div class="thumb">
+            <img src="assets/images/works/6.svg" alt="Portfolio-title" />
+            <div class="mask"></div>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <!-- more button -->
+  <div class="load-more text-center mt-4">
+    <a href="https://www.behance.net/lesliechihwai" class="btn btn-default"><i class="fas fa-spinner"></i> View more</a>
+    <!-- numbered pagination (hidden for infinite scroll) -->
+    <ul class="portfolio-pagination list-inline d-none">
+      <li class="list-inline-item">1</li>
+      <li class="list-inline-item"><a href="javascript:">2</a></li>
+    </ul>
+  </div>
+</div>
